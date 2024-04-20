@@ -10,7 +10,7 @@ async function getReciters () {
     const respons = await fetch(`${apiurl}${reciters}?language=${language}`)
     const data = await respons.json() ;
     chooseReciters.innerHTML = `<Option value="">اختر قارئ</Option>`
-
+    console.log(data);
     data.reciters.forEach(reciter => {
             chooseReciters.innerHTML += `<Option value=${reciter.id}> ${reciter.name}</Option>`
     });
@@ -28,7 +28,7 @@ async function getMoshaf(reciter) {
     const respons = await fetch(`${apiurl}${reciters}?language=${language}&reciter=${reciter}`)
     const datamoshaf = await respons.json() ; 
     // ل استدعاء المصاحف عند ضغط علي اي مرتل 
-
+ 
     const moshaf = datamoshaf.reciters[0].moshaf ;
     Choosemosahf.innerHTML= `<Option value="" >اختر روايه</Option>`
 
@@ -64,7 +64,6 @@ async function getSurah(dataserver , suralist) {
         surahNames.forEach(surahName => {
             if(surahName.id == surah){
                 ChooseSurah.innerHTML += `<Option value=${dataserver}${padsurah}.mp3> ${surahName.name}</Option>`
-
             }
         })
     })
@@ -77,7 +76,7 @@ getSurah()
 
 
 function playsurah(surahMp3) {
-    const playaudio = document.querySelector("#audio")
+    const playaudio = docxument.querySelector("#audio")
     playaudio.src = surahMp3 ;
     playaudio.play()
 }
